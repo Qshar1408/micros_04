@@ -95,6 +95,59 @@
 
 Данные автоматически распределяются между 3 главными узлами. Если один упадет, его резервная копия сразу станет главной.
 
+#### В качестве примера возьмем разворачивания через terraform. Примеры конфигов:
+
+Файл main.tf [main.tf](https://github.com/Qshar1408/micros_04/tree/main/src/main.tf)
+
+
+#### Развертывание
+
+```bash
+# Инициализация Terraform
+terraform init
+
+# Просмотр плана
+terraform plan
+
+# Применение конфигурации
+terraform apply -auto-approve
+
+# После завершения посмотреть outputs
+terraform output
+```
+
+#### Создание кластера
+
+```bash
+# Подключиться к первой ноде
+ssh ubuntu@<EXTERNAL_IP_NODE1>
+
+# Запустить Redis на всех нодах
+sudo redis-server /etc/redis/redis-cluster.conf
+
+# Создать кластер (используйте internal IP из output)
+redis-cli --cluster create \
+  192.168.10.XX:6379 \
+  192.168.20.XX:6379 \
+  192.168.30.XX:6379 \
+  --cluster-replicas 1
+
+# На вопрос отвечаем 'yes'
+```
+
+#### Проверка кластера
+```bash
+# Подключиться к кластеру
+redis-cli -c -h 192.168.10.XX -p 6379
+
+# Проверить статус
+CLUSTER INFO
+CLUSTER NODES
+
+# Протестировать
+set test "hello redis cluster"
+get test
+```
 
 ### Как оформить ДЗ?
 
