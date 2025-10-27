@@ -99,6 +99,11 @@
 
 Файл main.tf [main.tf](https://github.com/Qshar1408/micros_04/tree/main/src/main.tf)
 
+Файл redis-cluster.conf.tpl [redis-cluster.conf.tpl](https://github.com/Qshar1408/micros_04/tree/main/src/redis-cluster.conf.tpl)
+
+Файл variables.tf [variables.tf](https://github.com/Qshar1408/micros_04/tree/main/src/variables.tf)
+
+Файл terraform.tfvars [terraform.tfvars](https://github.com/Qshar1408/micros_04/tree/main/src/terraform.tfvars)
 
 #### Развертывание
 
